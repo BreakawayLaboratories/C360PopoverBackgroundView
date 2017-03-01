@@ -35,7 +35,7 @@
     if (self)
     {
         self.opaque = YES;
-        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+        self.backgroundColor = [UIColor lightGrayColor];
         
         UIViewAutoresizing autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         

@@ -21,7 +21,7 @@
     if (self)
     {
         self.title = @"Popover";
-        self.contentSizeForViewInPopover = CGSizeMake(512, 512);
+        self.preferredContentSize = CGSizeMake(512, 512);
     }
     return self;
 }
@@ -39,30 +39,30 @@
 
 - (void)contentView:(C360DemoContentView *)contentView horizontalGrowButtonTapped:(id)sender
 {
-    CGSize size = self.contentSizeForViewInPopover;
+    CGSize size = self.preferredContentSize;
     if (size.width < 896) size.width += 256;
-    self.contentSizeForViewInPopover = size;
+    self.preferredContentSize = size;
 }
 
 - (void)contentView:(C360DemoContentView *)contentView horizontalShrinkButtonTapped:(id)sender
 {
-    CGSize size = self.contentSizeForViewInPopover;
+    CGSize size = self.preferredContentSize;
     if (size.width > 384) size.width -= 256;
-    self.contentSizeForViewInPopover = size;
+    self.preferredContentSize = size;
 }
 
 - (void)contentView:(C360DemoContentView *)contentView verticalGrowButtonTapped:(id)sender
 {
-    CGSize size = self.contentSizeForViewInPopover;
+    CGSize size = self.preferredContentSize;
     if (size.height < 896) size.height += 256;
-    self.contentSizeForViewInPopover = size;
+    self.preferredContentSize = size;
 }
 
 - (void)contentView:(C360DemoContentView *)contentView verticalShrinkButtonTapped:(id)sender
 {
-    CGSize size = self.contentSizeForViewInPopover;
+    CGSize size = self.preferredContentSize;
     if (size.height > 384) size.height -= 256;
-    self.contentSizeForViewInPopover = size;
+    self.preferredContentSize = size;
 }
 
 @end

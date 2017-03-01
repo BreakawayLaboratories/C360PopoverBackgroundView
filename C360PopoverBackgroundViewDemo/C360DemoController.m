@@ -32,15 +32,15 @@
         self.isDefaultColor = YES;
         self.navigationBarShown = YES;
         
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopoverFromBarButtonItem:)];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopoverFromBarButtonItem:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverFromBarButtonItem:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverFromBarButtonItem:)];
         
         self.toolbarItems = @[
-            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopoverFromBarButtonItem:)],
+            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverFromBarButtonItem:)],
             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopoverFromBarButtonItem:)],
+            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverFromBarButtonItem:)],
             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStyleBordered target:self action:@selector(showPopoverFromBarButtonItem:)]
+            [[UIBarButtonItem alloc] initWithTitle:@"Show!" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverFromBarButtonItem:)]
         ];
     }
     return self;

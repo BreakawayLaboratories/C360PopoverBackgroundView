@@ -30,6 +30,11 @@
 @property (nonatomic, strong) UIImageView *leftArrowView;
 @property (nonatomic, strong) UIImageView *lowerLeftEdgeView;
 
+@property (nonatomic, strong) UIColor *fillGradientStart;
+@property (nonatomic, strong) UIColor *fillGradientEnd;
+@property (nonatomic, strong) UIColor *lineGradientStart;
+@property (nonatomic, strong) UIColor *lineGradientEnd;
+    
 @end
 
 @implementation C360PopoverBackgroundView

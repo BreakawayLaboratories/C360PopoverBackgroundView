@@ -15,10 +15,6 @@
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) UIColor *borderColor;
 @property (nonatomic, strong) UIColor *glowColor;
-@property (nonatomic, strong) UIColor *fillGradientStart;
-@property (nonatomic, strong) UIColor *fillGradientEnd;
-@property (nonatomic, strong) UIColor *lineGradientStart;
-@property (nonatomic, strong) UIColor *lineGradientEnd;
 @property (nonatomic) CGFloat cornerRadius;
 @property (nonatomic) CGFloat highlightDepth;
     

@@ -11,9 +11,19 @@
     CGFloat _arrowOffset;
     UIPopoverArrowDirection _arrowDirection;
 }
-
-@property (nonatomic, strong) UIColor *tintColor UI_APPEARANCE_SELECTOR;
-@property (nonatomic, strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
-@property (nonatomic, strong) UIColor *glowColor UI_APPEARANCE_SELECTOR;
-
+    
+@property (nonatomic, strong) UIColor *tintColor;
+@property (nonatomic, strong) UIColor *borderColor;
+@property (nonatomic, strong) UIColor *glowColor;
+@property (nonatomic, strong) UIColor *fillGradientStart;
+@property (nonatomic, strong) UIColor *fillGradientEnd;
+@property (nonatomic, strong) UIColor *lineGradientStart;
+@property (nonatomic, strong) UIColor *lineGradientEnd;
+@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) CGFloat highlightDepth;
+    
++(CGFloat)arrowHeight;
++(CGFloat)arrowBase;
++(UIEdgeInsets)contentViewInsets;
+    
 @end

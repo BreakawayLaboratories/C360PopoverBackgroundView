@@ -12,9 +12,6 @@
     BOOL _needsImageUpdate;
 }
 
-@property (nonatomic, assign, readonly) CGFloat cornerRadius;
-@property (nonatomic, assign, readonly) CGFloat highlightDepth;
-
 @property (nonatomic, strong) UIImageView *fillView;
 @property (nonatomic, strong) UIImageView *topLeftCornerView;
 @property (nonatomic, strong) UIImageView *topLeftEdgeView;
@@ -57,6 +54,14 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        _cornerRadius = 10;
+        _highlightDepth = 24;
+        
+        _fillGradientStart = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
+        _fillGradientEnd = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.15];
+        _lineGradientStart = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
+        _lineGradientEnd = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.0];
+        
         _fillView = [[UIImageView alloc] init]; [self addSubview:_fillView];
         _topLeftCornerView = [[UIImageView alloc] init]; [self addSubview:_topLeftCornerView];
         _topLeftEdgeView = [[UIImageView alloc] init]; [self addSubview:_topLeftEdgeView];
@@ -177,16 +182,6 @@
 {
     _glowColor = glowColor;
     [self setNeedsImageUpdate];
-}
-
-- (CGFloat)cornerRadius
-{
-    return 10;
-}
-
-- (CGFloat)highlightDepth
-{
-    return 24;
 }
 
 - (void)layoutSubviews
@@ -400,8 +395,8 @@
         
         size_t fillGradientNumberOfLocations = 2;
         CGFloat fillGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat fillGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-                                              1, 1, 1, 0.15 };  // End color
+        CGFloat fillGradientComponents[8];
+        [self getGradientComponents:self.fillGradientStart endColor:self.fillGradientEnd result:fillGradientComponents];
         
         CGGradientRef fillGradient = CGGradientCreateWithColorComponents (colorspace, fillGradientComponents, fillGradientLocations, fillGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, 2), CGPointMake(0, highlightDepth), 0);
@@ -422,8 +417,8 @@
         
         size_t lineGradientNumberOfLocations = 2;
         CGFloat lineGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat lineGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-                                              1, 1, 1, 0.0 };  // End color
+        CGFloat lineGradientComponents[8];
+        [self getGradientComponents:self.lineGradientStart endColor:self.lineGradientEnd result:lineGradientComponents];
         
         CGGradientRef lineGradient = CGGradientCreateWithColorComponents (colorspace, lineGradientComponents, lineGradientLocations, lineGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, lineGradient, CGPointMake(0, 2), CGPointMake(0, cornerRadius), 0);
@@ -476,8 +471,8 @@
         
         size_t fillGradientNumberOfLocations = 2;
         CGFloat fillGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat fillGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.15 };  // End color
+        CGFloat fillGradientComponents[8];
+        [self getGradientComponents:self.fillGradientStart endColor:self.fillGradientEnd result:fillGradientComponents];
         
         CGGradientRef fillGradient = CGGradientCreateWithColorComponents (colorspace, fillGradientComponents, fillGradientLocations, fillGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, 2), CGPointMake(0, highlightDepth), 0);
@@ -494,8 +489,8 @@
         
         size_t lineGradientNumberOfLocations = 2;
         CGFloat lineGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat lineGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.0 };  // End color
+        CGFloat lineGradientComponents[8];
+        [self getGradientComponents:self.lineGradientStart endColor:self.lineGradientEnd result:lineGradientComponents];
         
         CGGradientRef lineGradient = CGGradientCreateWithColorComponents (colorspace, lineGradientComponents, lineGradientLocations, lineGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, lineGradient, CGPointMake(0, 2), CGPointMake(0, cornerRadius), 0);
@@ -577,8 +572,8 @@
         
         size_t fillGradientNumberOfLocations = 2;
         CGFloat fillGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat fillGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.15 };  // End color
+        CGFloat fillGradientComponents[8];
+        [self getGradientComponents:self.fillGradientStart endColor:self.fillGradientEnd result:fillGradientComponents];
         
         CGGradientRef fillGradient = CGGradientCreateWithColorComponents (colorspace, fillGradientComponents, fillGradientLocations, fillGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, arrowHeight + 2), CGPointMake(0, arrowHeight + highlightDepth), kCGGradientDrawsBeforeStartLocation);
@@ -601,8 +596,8 @@
         
         size_t lineGradientNumberOfLocations = 2;
         CGFloat lineGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat lineGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.0 };  // End color
+        CGFloat lineGradientComponents[8];
+        [self getGradientComponents:self.lineGradientStart endColor:self.lineGradientEnd result:lineGradientComponents];
         
         CGGradientRef lineGradient = CGGradientCreateWithColorComponents (colorspace, lineGradientComponents, lineGradientLocations, lineGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, lineGradient, CGPointMake(0, arrowHeight + 2), CGPointMake(0, arrowHeight + cornerRadius), kCGGradientDrawsBeforeStartLocation);
@@ -640,7 +635,7 @@
         // Draw the border
         
         CGContextSaveGState(context);
-        
+
         CGContextMoveToPoint(context, 0, 1);
         CGContextAddArc(context, 0, cornerRadius, cornerRadius - 1, M_PI + M_PI_2, 0, 0);
         CGContextAddLineToPoint(context, cornerRadius - 1, highlightDepth);
@@ -680,8 +675,8 @@
         
         size_t fillGradientNumberOfLocations = 2;
         CGFloat fillGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat fillGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.15 };  // End color
+        CGFloat fillGradientComponents[8];
+        [self getGradientComponents:self.fillGradientStart endColor:self.fillGradientEnd result:fillGradientComponents];
         
         CGGradientRef fillGradient = CGGradientCreateWithColorComponents (colorspace, fillGradientComponents, fillGradientLocations, fillGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, fillGradient, CGPointMake(0, 2), CGPointMake(0, highlightDepth), 0);
@@ -702,8 +697,8 @@
         
         size_t lineGradientNumberOfLocations = 2;
         CGFloat lineGradientLocations[2] = { 0.0, 1.0 };
-        CGFloat lineGradientComponents[8] = { 1, 1, 1, 0.5,     // Start color
-            1, 1, 1, 0.0 };  // End color
+        CGFloat lineGradientComponents[8];
+        [self getGradientComponents:self.lineGradientStart endColor:self.lineGradientEnd result:lineGradientComponents];
         
         CGGradientRef lineGradient = CGGradientCreateWithColorComponents (colorspace, lineGradientComponents, lineGradientLocations, lineGradientNumberOfLocations);
         CGContextDrawLinearGradient(context, lineGradient, CGPointMake(0, 2), CGPointMake(0, cornerRadius), 0);
@@ -745,7 +740,7 @@
         CGContextFillPath(context);
         
         // Draw the border
-        
+
         CGContextMoveToPoint(context, 0, 0);
         CGContextAddLineToPoint(context, cornerRadius - 1, 0);
         CGContextAddLineToPoint(context, cornerRadius + arrowHeight - 1, arrowHalfBase);
@@ -789,7 +784,7 @@
         // Draw the border
         
         CGContextSaveGState(context);
-        
+
         CGContextMoveToPoint(context, cornerRadius - 1, 0);
         CGContextAddArc(context, 0, 0, cornerRadius - 1, 0, M_PI_2, 0);
         CGContextAddLineToPoint(context, 0, 0);
@@ -983,4 +978,10 @@
     return image;
 }
 
+-(void)getGradientComponents:(UIColor *)startColor endColor:(UIColor *)endColor result:(CGFloat[8])result
+{
+    [startColor getRed:&result[0] green:&result[1] blue:&result[2] alpha:&result[3]];
+    [endColor getRed:&result[4] green:&result[5] blue:&result[6] alpha:&result[7]];
+}
+    
 @end

@@ -62,10 +62,10 @@
         _cornerRadius = 10;
         _highlightDepth = 24;
         
-        _fillGradientStart = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
-        _fillGradientEnd = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.15];
-        _lineGradientStart = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
-        _lineGradientEnd = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.0];
+        _fillGradientStart = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
+        _fillGradientEnd = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.15];
+        _lineGradientStart = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
+        _lineGradientEnd = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.0];
         
         _fillView = [[UIImageView alloc] init]; [self addSubview:_fillView];
         _topLeftCornerView = [[UIImageView alloc] init]; [self addSubview:_topLeftCornerView];
